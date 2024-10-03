@@ -1,31 +1,41 @@
 import express from "express";
-import { ApolloServer, gql } from "apollo-server-express";
+import { ApolloServer } from "apollo-server-express";
+import dotenv from "dotenv";
+import resolvers from "./Graphql/resolvers";
+import typeDefs from "./Graphql/schema";
 
 
-const typeDefs = gql`
-type Query {
-  hello: String
-}
-`;
 
-// Provide resolver functions for your schema fields
-const resolvers = {
-Query: {
-  hello: () => 'Hello world!',
-},
-};
+import  ConnectDB from "./controllers/connectDB";
 
-//Apollo Graphql server setup (See Documentation)
+dotenv.config(); // Load environment variables from .env file
+
+
+// Apollo GraphQL server setup
 const server = new ApolloServer({
   typeDefs,
   resolvers,
   introspection: true,
   playground: true,
+  
 });
 
 const app = express();
+
+const PORT = process.env.PORT || 4000;
+
+// Apply Apollo middleware to Express
 server.applyMiddleware({ app });
 
-app.listen({ port: 4000 }, () =>
-  console.log(`🚀 Server ready at http://localhost:4000${server.graphqlPath}`)
-);
+// Start the Express server
+const start = async () => {
+  try {
+    await ConnectDB(process.env.MONGODB_URI);
+    app.listen(PORT, () =>
+      console.log(`DB CONNECTED & app listening on port: ${PORT}...`)
+    );
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+  start();
