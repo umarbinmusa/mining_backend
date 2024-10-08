@@ -5,7 +5,9 @@
   "repository": "",
   "license": "MIT",
   "scripts": {
-    "start": "nodemon --exec babel-node ./src/server.js"
+    "start": "nodemon --exec babel-node ./src/server.js",
+    "start:client": "cd ../client && npm run dev", 
+    "start:all": "concurrently \"yarn start\" \"npm run start:client\""
   },
   "dependencies": {
     "@babel/cli": "^7.13.0",
@@ -23,6 +25,7 @@
     "mongoose": "^8.7.0"
   },
   "devDependencies": {
-    "nodemon": "^2.0.7"
+    "nodemon": "^2.0.7",
+    "concurrently": "^9.0.1" 
   }
 }

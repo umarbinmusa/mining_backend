@@ -3,7 +3,9 @@ import Friends from './icons/Friends';
 import Coins from './icons/Coins';
 import { hamsterCoin } from './images';
 import { useQuery } from '@apollo/client';
-import { GET_TASKS_QUERY } from "./Queries"; // Adjust the path as needed
+import { GET_TASKS_QUERY } from "./Queries"; 
+import { Navigate } from "react-router-dom";
+
 
 const Mine = () => {
   const { loading, error, data } = useQuery(GET_TASKS_QUERY);
@@ -41,11 +43,11 @@ const Mine = () => {
 
             <div className="px-4 mt-4 flex justify-center"></div>
             <div>
-                <h2>Task List</h2>
-                <ul className='mr-50'>
+    
+                <ul className=''>
                   {data.getTasks.map((task) => (
                     <li key={task.id}>
-                      <strong>URL:</strong> {task.url} <br />
+                     <a href="/www.youtube.com" target='blank' rel="noopener noreferrer"> <strong>URL:</strong> {task.url} <br /> </a>
                       <strong>Verify:</strong> {task.verify}
                     </li>
                   ))}
