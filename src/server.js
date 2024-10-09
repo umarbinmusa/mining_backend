@@ -8,7 +8,7 @@ import typeDefs from "./Graphql/schema";
 
 import  ConnectDB from "./controllers/connectDB";
 
-dotenv.config(); // Load environment variables from .env file
+dotenv.config(); 
 
 
 // Apollo GraphQL server setup
