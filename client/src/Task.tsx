@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { gql, useMutation } from '@apollo/client';
 import { useNavigate } from 'react-router-dom';
 
+// Define your GraphQL mutation
 const CREATE_TASK_MUTATION = gql`
   mutation CreateTask($url: String!, $verify: String!) {
     create_task(url: $url, verify: $verify) {
@@ -19,12 +20,12 @@ const Task = () => {
 
   const [createTask, { loading }] = useMutation(CREATE_TASK_MUTATION, {
     onCompleted: (data) => {
-      if (data.create_task) { // Check the correct response
+      if (data.create_task) {
         setUrl('');
         setVerify('');
         navigate('/Mine');
       } else {
-        setErrorMessage('Failed to create task.'); // Customize as needed
+        setErrorMessage('Failed to create task.');
       }
     },
     onError: (error) => {
@@ -33,7 +34,8 @@ const Task = () => {
     },
   });
 
-  const handleFormSubmit = async (e) => {
+  // Explicitly type the parameter 'e'
+  const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (!url || !verify) {
@@ -84,7 +86,7 @@ const Task = () => {
         <div className="flex items-center justify-between">
           <button
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-            type="submit" // Change to submit
+            type="submit"
             disabled={loading}
           >
             {loading ? 'Creating...' : 'Create Task'}
