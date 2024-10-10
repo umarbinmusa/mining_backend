@@ -1,6 +1,3 @@
-import Friends from './icons/Friends';
-import Coins from './icons/Coins';
-import { hamsterCoin } from './images';
 import { useQuery } from '@apollo/client';
 import { GET_TASKS_QUERY } from "./Queries"; 
 
@@ -20,7 +17,7 @@ const Mine = () => {
     <div className="bg-black flex justify-center">
       <div className="w-full bg-black text-white h-screen font-bold flex flex-col max-w-xl">
         <div className="px-4 z-10">
-          {/* Header Content */}
+   
         </div>
 
         <div className="flex-grow mt-4 bg-[#f3ba2f] rounded-t-[48px] relative top-glow z-0">
@@ -46,9 +43,9 @@ const Mine = () => {
         </div>
       </div>
 
-      {/* Bottom fixed div */}
+      
       <div className="fixed bottom-0 left-1/2 transform -translate-x-1/2 w-[calc(100%-2rem)] max-w-xl bg-[#272a2f] flex justify-around items-center z-50 rounded-3xl text-xs">
-        {/* Bottom Nav Content */}
+       
       </div>
     </div>
   );
