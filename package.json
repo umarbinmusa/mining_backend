@@ -6,8 +6,9 @@
   "license": "MIT",
   "scripts": {
     "start": "nodemon --exec babel-node ./src/server.js",
-    "start:client": "cd ./client && npm run dev  --production=false",
-    "start:all": "concurrently \"yarn start\" \"npm run start:client\""
+    "start:client": "cd ./client && npm run dev",
+    "start:all": "concurrently \"yarn start\" \"npm run start:client\"",
+    "postbuild": "cd ./client && npm install && npm run build"
   },
   "dependencies": {
     "@babel/cli": "^7.13.0",
