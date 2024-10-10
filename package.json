@@ -5,9 +5,10 @@
   "repository": "",
   "license": "MIT",
   "scripts": {
+    "build": "tsc -b && vite build",
     "start": "nodemon --exec babel-node ./src/server.js",
     "start:client": "cd ./client && npm run dev",
-    "start:all": "concurrently \"yarn start\" \"npm run start:client\"",
+   "start:all": "npx concurrently \"yarn start\" \"npm run start:client\"",
     "postbuild": "cd ./client && npm install && npm run build"
   },
   "dependencies": {
