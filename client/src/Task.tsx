@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { gql, useMutation } from '@apollo/client';
 import { useNavigate } from 'react-router-dom';
 
-// Define your GraphQL mutation
+
 const CREATE_TASK_MUTATION = gql`
   mutation CreateTask($url: String!, $verify: String!) {
     create_task(url: $url, verify: $verify) {
