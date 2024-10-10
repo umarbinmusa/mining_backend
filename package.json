@@ -6,7 +6,7 @@
   "license": "MIT",
   "scripts": {
     "start": "nodemon --exec babel-node ./src/server.js",
-    "start:client": "cd ./client && npm run dev",
+    "start:client": "cd ./client && npm run dev  --production=false",
     "start:all": "concurrently \"yarn start\" \"npm run start:client\""
   },
   "dependencies": {
