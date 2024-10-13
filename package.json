@@ -4,13 +4,14 @@
   "main": "index.js",
   "repository": "",
   "license": "MIT",
-  "scripts": {
-    "build": "npm run build",
-    "start": "nodemon --exec babel-node ./src/server.js",
-    "start:client": "cd ./client && npm run start",
-    "start:all": "npx concurrently \"yarn start\" \"npm run start:client\"",
-    "postbuild": "cd ./client && npm install && npm run build"
-  },
+"scripts": {
+  "build": "babel ./src -d ./dist", 
+  "start": "nodemon --exec babel-node ./src/server.js",
+  "start:client": "cd ./client && npm run start",
+  "start:all": "npx concurrently \"yarn start\" \"npm run start:client\"",
+  "postbuild": "cd ./client && npm install && npm run build"
+},
+
   "dependencies": {
     "@babel/cli": "^7.13.0",
     "@babel/core": "^7.13.8",
