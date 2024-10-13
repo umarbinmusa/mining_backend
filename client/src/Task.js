@@ -19,7 +19,7 @@ const Task = () => {
             if (data.create_task) {
                 setUrl('');
                 setVerify('');
-               
+                navigate('/Mine');
             }
             else {
                 setErrorMessage('Failed to create task.');
