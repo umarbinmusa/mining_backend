@@ -11,7 +11,7 @@ const Home = () => {
                 
               </div>
               <div>
-                <p className="text-sm">UMAR bIN MUSA (CEO)</p>
+                <p className="text-sm">UMAR bIN MUSA </p>
               </div>
             </div>
             <div className="flex items-center justify-between space-x-4 mt-1">
