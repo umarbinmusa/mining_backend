@@ -5,6 +5,9 @@ import resolvers from "./Graphql/resolvers";
 import typeDefs from "./Graphql/schema";
 import ConnectDB from "./controllers/connectDB";
 import cors from 'cors';
+import morgan from 'morgan';
+import helmet from 'helmet';
+import path from 'path';
 
 dotenv.config();
 
@@ -17,11 +20,16 @@ const server = new ApolloServer({
 });
 
 const app = express();
-app.use(cors()); // Enable CORS
+app.use(helmet());
+app.use(morgan('tiny'));
+app.use(cors({
+  origin: process.env.CORS_ORIGIN || '*',
+}));
 
-const PORT = process.env.PORT || 5000;
+// Serve static files from the React app
+app.use(express.static(path.join(__dirname, 'build')));
 
-// Apply Apollo middleware to Express
+// Apollo server middleware
 server.applyMiddleware({ app });
 
 // Basic route
@@ -29,16 +37,33 @@ app.get('/', (req, res) => {
   res.send('Welcome to the API!');
 });
 
+// Health check route
+app.get('/health', (req, res) => {
+  res.status(200).send('OK');
+});
+
+// Catch-all handler to serve the React app
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
+
 // Start the Express server
 const start = async () => {
   try {
     await ConnectDB(process.env.MONGODB_URI);
-    app.listen(PORT, () =>
-      console.log(`DB CONNECTED & app listening on port: ${PORT}...`)
+    app.listen(process.env.PORT || 5000, () =>
+      console.log(`DB CONNECTED & app listening on port: ${process.env.PORT || 5000}...`)
     );
   } catch (error) {
     console.error("Error starting server:", error.message);
   }
 };
+
+// Handle graceful shutdown
+process.on('SIGINT', async () => {
+  console.log('Shutting down gracefully...');
+  // Here you can close your DB connection if needed
+  process.exit(0);
+});
 
 start();
