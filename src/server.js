@@ -20,22 +20,19 @@ const server = new ApolloServer({
 });
 
 const app = express();
+const PORT = process.env.PORT || 5000;
 app.use(helmet());
 app.use(morgan('tiny'));
 app.use(cors({
   origin: process.env.CORS_ORIGIN || '*',
 }));
 
-// Serve static files from the React app
-app.use(express.static(path.join(__dirname, 'build')));
+
 
 // Apollo server middleware
 server.applyMiddleware({ app });
 
-// Basic route
-app.get('/', (req, res) => {
-  res.send('Welcome to the API!');
-});
+
 
 // Health check route
 app.get('/health', (req, res) => {
@@ -43,8 +40,10 @@ app.get('/health', (req, res) => {
 });
 
 // Catch-all handler to serve the React app
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
+app.use(express.static(__dirname + "/client/build"));
+
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "./client/build", "index.html"));
 });
 
 
@@ -52,8 +51,8 @@ app.get('*', (req, res) => {
 const start = async () => {
   try {
     await ConnectDB(process.env.MONGODB_URI);
-    app.listen(process.env.PORT || 5000, () =>
-      console.log(`DB CONNECTED & app listening on port: ${process.env.PORT || 5000}...`)
+    app.listen(PORT, () =>
+      console.log(`DB CONNECTED & app listening on port: ${5000}...`)
     );
   } catch (error) {
     console.error("Error starting server:", error.message);
