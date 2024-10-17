@@ -59,10 +59,9 @@ const start = async () => {
   }
 };
 
-// Handle graceful shutdown
 process.on('SIGINT', async () => {
   console.log('Shutting down gracefully...');
-  // Here you can close your DB connection if needed
+  
   process.exit(0);
 });
 
