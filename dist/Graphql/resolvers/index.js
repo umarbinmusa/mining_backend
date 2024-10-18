@@ -16,5 +16,4 @@ var resolvers = {
     create_admin: _admin["default"].Mutation.create_admin
   }
 };
-var _default = resolvers;
-exports["default"] = _default;
+var _default = exports["default"] = resolvers;

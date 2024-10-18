@@ -22,5 +22,4 @@ var taskSchema = new Schema({
     ref: "Admin"
   }
 });
-var _default = _mongoose["default"].model('Task', taskSchema);
-exports["default"] = _default;
+var _default = exports["default"] = _mongoose["default"].model('Task', taskSchema);

@@ -17,25 +17,23 @@ var adminResolver = {
       var _create_admin = (0, _asyncToGenerator2["default"])(/*#__PURE__*/_regenerator["default"].mark(function _callee(_, _ref) {
         var first_name, last_name, email, password, newAdmin, savedAdmin;
         return _regenerator["default"].wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                first_name = _ref.first_name, last_name = _ref.last_name, email = _ref.email, password = _ref.password;
-                newAdmin = new _Admin["default"]({
-                  first_name: first_name,
-                  last_name: last_name,
-                  email: email,
-                  password: password
-                });
-                _context.next = 4;
-                return newAdmin.save();
-              case 4:
-                savedAdmin = _context.sent;
-                return _context.abrupt("return", savedAdmin);
-              case 6:
-              case "end":
-                return _context.stop();
-            }
+          while (1) switch (_context.prev = _context.next) {
+            case 0:
+              first_name = _ref.first_name, last_name = _ref.last_name, email = _ref.email, password = _ref.password;
+              newAdmin = new _Admin["default"]({
+                first_name: first_name,
+                last_name: last_name,
+                email: email,
+                password: password
+              });
+              _context.next = 4;
+              return newAdmin.save();
+            case 4:
+              savedAdmin = _context.sent;
+              return _context.abrupt("return", savedAdmin);
+            case 6:
+            case "end":
+              return _context.stop();
           }
         }, _callee);
       }));
@@ -46,5 +44,4 @@ var adminResolver = {
     }()
   }
 };
-var _default = adminResolver;
-exports["default"] = _default;
+var _default = exports["default"] = adminResolver;

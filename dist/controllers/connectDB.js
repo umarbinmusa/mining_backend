@@ -9,5 +9,4 @@ var _mongoose = _interopRequireDefault(require("mongoose"));
 var ConnectDB = function ConnectDB(URI) {
   return _mongoose["default"].connect(URI);
 };
-var _default = ConnectDB;
-exports["default"] = _default;
+var _default = exports["default"] = ConnectDB;

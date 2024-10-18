@@ -21,5 +21,4 @@ var adminSchema = new Schema({
     type: String
   }
 });
-var _default = _mongoose["default"].model('Admin', adminSchema);
-exports["default"] = _default;
+var _default = exports["default"] = _mongoose["default"].model('Admin', adminSchema);

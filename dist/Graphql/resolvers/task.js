@@ -16,23 +16,21 @@ var taskResolver = {
       return (0, _asyncToGenerator2["default"])(/*#__PURE__*/_regenerator["default"].mark(function _callee() {
         var tasks;
         return _regenerator["default"].wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                _context.prev = 0;
-                _context.next = 3;
-                return _Task["default"].find();
-              case 3:
-                tasks = _context.sent;
-                return _context.abrupt("return", tasks);
-              case 7:
-                _context.prev = 7;
-                _context.t0 = _context["catch"](0);
-                throw new Error(_context.t0.message);
-              case 10:
-              case "end":
-                return _context.stop();
-            }
+          while (1) switch (_context.prev = _context.next) {
+            case 0:
+              _context.prev = 0;
+              _context.next = 3;
+              return _Task["default"].find();
+            case 3:
+              tasks = _context.sent;
+              return _context.abrupt("return", tasks);
+            case 7:
+              _context.prev = 7;
+              _context.t0 = _context["catch"](0);
+              throw new Error(_context.t0.message);
+            case 10:
+            case "end":
+              return _context.stop();
           }
         }, _callee, null, [[0, 7]]);
       }))();
@@ -43,23 +41,21 @@ var taskResolver = {
       var _create_task = (0, _asyncToGenerator2["default"])(/*#__PURE__*/_regenerator["default"].mark(function _callee2(_, _ref) {
         var url, verify, newTask, savedTask;
         return _regenerator["default"].wrap(function _callee2$(_context2) {
-          while (1) {
-            switch (_context2.prev = _context2.next) {
-              case 0:
-                url = _ref.url, verify = _ref.verify;
-                newTask = new _Task["default"]({
-                  url: url,
-                  verify: verify
-                });
-                _context2.next = 4;
-                return newTask.save();
-              case 4:
-                savedTask = _context2.sent;
-                return _context2.abrupt("return", savedTask);
-              case 6:
-              case "end":
-                return _context2.stop();
-            }
+          while (1) switch (_context2.prev = _context2.next) {
+            case 0:
+              url = _ref.url, verify = _ref.verify;
+              newTask = new _Task["default"]({
+                url: url,
+                verify: verify
+              });
+              _context2.next = 4;
+              return newTask.save();
+            case 4:
+              savedTask = _context2.sent;
+              return _context2.abrupt("return", savedTask);
+            case 6:
+            case "end":
+              return _context2.stop();
           }
         }, _callee2);
       }));
@@ -70,5 +66,4 @@ var taskResolver = {
     }()
   }
 };
-var _default = taskResolver;
-exports["default"] = _default;
+var _default = exports["default"] = taskResolver;
