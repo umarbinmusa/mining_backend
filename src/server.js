@@ -20,7 +20,7 @@ const server = new ApolloServer({
 });
 
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 1000
 app.use(helmet());
 app.use(morgan('tiny'));
 app.use(cors({
@@ -51,9 +51,9 @@ app.get("*", (req, res) => {
 const start = async () => {
   try {
     await ConnectDB(process.env.MONGODB_URI);
-    app.listen(PORT, () =>
-      console.log(`DB CONNECTED & app listening on port: ${5000}...`)
-    );
+    app.listen(PORT, '0.0.0.0', () => {
+      console.log(`Server is running on http://0.0.0.0:${PORT}`);
+  });
   } catch (error) {
     console.error("Error starting server:", error.message);
   }
