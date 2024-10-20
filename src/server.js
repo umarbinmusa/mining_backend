@@ -32,6 +32,7 @@ app.use(cors({
 // Apollo server middleware
 server.applyMiddleware({ app });
 
+app.use(express.static(path.join(__dirname, '../client/build')));
 
 
 
