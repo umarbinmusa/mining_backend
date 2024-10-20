@@ -34,13 +34,7 @@ server.applyMiddleware({ app });
 
 
 
-// Health check route
-app.get('/health', (req, res) => {
-  res.status(200).send('OK');
-});
 
-// Catch-all handler to serve the React app
-app.use(express.static(__dirname + "/client/build"));
 
 app.get("*", (req, res) => {
   res.sendFile(path.resolve(__dirname, "./client/build", "index.html"));
