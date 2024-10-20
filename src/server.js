@@ -50,11 +50,13 @@ const start = async () => {
   } catch (error) {
     console.error("Error starting server:", error.message);
   }
+
 };
 
 process.on('SIGINT', async () => {
   console.log('Shutting down gracefully...');
   process.exit(0);
 });
+
 
 start();

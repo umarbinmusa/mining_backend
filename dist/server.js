@@ -23,7 +23,7 @@ var server = new _apolloServerExpress.ApolloServer({
   playground: true
 });
 var app = (0, _express["default"])();
-var PORT = process.env.PORT || 5000;
+var PORT = process.env.PORT || 1000;
 app.use((0, _helmet["default"])());
 app.use((0, _morgan["default"])('tiny'));
 app.use((0, _cors["default"])({
@@ -35,15 +35,13 @@ server.applyMiddleware({
   app: app
 });
 
-// Health check route
-app.get('/health', function (req, res) {
-  res.status(200).send('OK');
-});
+// Serve static files from the React app
+app.use(_express["default"]["static"](_path["default"].join(__dirname, '../client/build')));
 
-// Catch-all handler to serve the React app
-app.use(_express["default"]["static"](__dirname + "/client/build"));
+// Catch-all handler to serve the index.html file
 app.get("*", function (req, res) {
-  res.sendFile(_path["default"].resolve(__dirname, "./client/build", "index.html"));
+  console.log("Received request for ".concat(req.url));
+  res.sendFile(_path["default"].resolve(__dirname, '../client/build', 'index.html'));
 });
 
 // Start the Express server
@@ -56,8 +54,8 @@ var start = /*#__PURE__*/function () {
           _context.next = 3;
           return (0, _connectDB["default"])(process.env.MONGODB_URI);
         case 3:
-          app.listen(PORT, function () {
-            return console.log("DB CONNECTED & app listening on port: ".concat(5000, "..."));
+          app.listen(PORT, '0.0.0.0', function () {
+            console.log("Server is running on http://0.0.0.0:".concat(PORT).concat(server.graphqlPath));
           });
           _context.next = 9;
           break;
