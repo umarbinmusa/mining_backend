@@ -20,35 +20,33 @@ const server = new ApolloServer({
 });
 
 const app = express();
-const PORT = process.env.PORT || 1000
+const PORT = process.env.PORT || 1000;
+
 app.use(helmet());
 app.use(morgan('tiny'));
 app.use(cors({
   origin: process.env.CORS_ORIGIN || '*',
 }));
 
-
-
 // Apollo server middleware
 server.applyMiddleware({ app });
 
+// Serve static files from the React app
 app.use(express.static(path.join(__dirname, '../client/build')));
 
-
-
-
+// Catch-all handler to serve the index.html file
 app.get("*", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "../client/build", "index.html"));
+  console.log(`Received request for ${req.url}`);
+  res.sendFile(path.resolve(__dirname, '../client/build', 'index.html'));
 });
-
 
 // Start the Express server
 const start = async () => {
   try {
     await ConnectDB(process.env.MONGODB_URI);
     app.listen(PORT, '0.0.0.0', () => {
-      console.log(`Server is running on http://0.0.0.0:${PORT}`);
-  });
+      console.log(`Server is running on http://0.0.0.0:${PORT}${server.graphqlPath}`);
+    });
   } catch (error) {
     console.error("Error starting server:", error.message);
   }
@@ -56,7 +54,6 @@ const start = async () => {
 
 process.on('SIGINT', async () => {
   console.log('Shutting down gracefully...');
-  
   process.exit(0);
 });
 
