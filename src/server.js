@@ -34,6 +34,12 @@ server.applyMiddleware({ app });
 // Serve static files from the React app
 app.use(express.static(path.join(__dirname, '../client/build')));
 
+app.get('/build/static/js/main.2c666688.js', (req, res) => {
+  console.log('Requesting JS file');
+  res.sendFile(path.resolve(__dirname, '../client/build/static/js/main.2c666688.js'));
+});
+
+
 // Catch-all handler to serve the index.html file
 app.get("*", (req, res) => {
   console.log(`Received request for ${req.url}`);
